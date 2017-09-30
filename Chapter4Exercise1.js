@@ -1,4 +1,4 @@
-The introduction of this book alluded to the following as a nice way to compute the sum of a range of numbers:
+/*The introduction of this book alluded to the following as a nice way to compute the sum of a range of numbers:
 
 console.log(sum(range(1, 10)));
 Write a range function that takes two arguments, start and end, and returns an array containing all the numbers from start up to (and including) end.
@@ -24,5 +24,14 @@ function range(start, end){
   return tempArray;
 }
 
-var a = range(0,10);
-console.log(a);
+function sum(arr) {
+  var counter = 0;
+  for (var i = 0; i < arr.length; i++){
+    counter += i;
+  }
+  return counter;
+}
+
+var b = sum(range(0,10));
+console.log(b);
+
