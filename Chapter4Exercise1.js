@@ -16,9 +16,9 @@ console.log(range(5, 2, -1));
 console.log(sum(range(1, 10)));
 // → 55 */
 
-function range(start, end){
+function range(start, end) {
   var tempArray = [];
-  for (var i = start; i < (end+1); i++){
+  for (var i = start; i < (end + 1); i++) {
     tempArray.push(i);
   }
   return tempArray;
@@ -26,12 +26,34 @@ function range(start, end){
 
 function sum(arr) {
   var counter = 0;
-  for (var i = 0; i < arr.length; i++){
+  for (var i = 0; i < arr.length; i++) {
     counter += i;
   }
   return counter;
 }
 
-var b = sum(range(0,10));
+var b = sum(range(0, 10));
 console.log(b);
+
+function specialRange(start, end, step) {
+  var tempArray = [];
+  if (start < end) {
+    for (var i = start; i < (end + 1);
+      (i += step)) {
+      tempArray.push(i);
+    }
+  } else if (start > end) {
+    for (var i = start; i > (end - 1);
+      (i += step)) {
+      tempArray.push(i);
+    }
+  }
+  return tempArray;
+}
+
+var c = specialRange(1, 10, 2);
+console.log(c);
+
+var d = specialRange(5, 2, -1);
+console.log(d);
 
