@@ -15,46 +15,51 @@
 // // → true
 
 function deepEqual(val1, val2) {
-	var temp = "",
-			temp2 = "";
-	if(typeof val1 === "object" && typeof val2 === "object") {
-		temp = Object.keys(val1);
-		temp2 = Object.keys(val2);
-		temp = temp.toString();
-		temp2 = temp2.toString();
-		for (key in val1) {
-			temp = temp.concat(val1[key]);
-		}
-		for (key in val2) {
-			temp2 = temp2.concat(val2[key]);
-		}
-		if(temp === temp2) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	else if (val1 == val2) {
-		return true;
-	}
-	else if (val1 != val2){
-		return false;
-	}
+  var temp = "",
+    	temp2 = "";
+  if ((val1 === null) || (val2 === null)) {
+    if (val1 === val2) {
+      return true;
+    } else {
+      return false;
+    }
+  } else if (typeof val1 === "object" && typeof val2 === "object") {
+    temp = Object.keys(val1);
+    temp2 = Object.keys(val2);
+    temp = temp.toString();
+    temp2 = temp2.toString();
+    for (key in val1) {
+      temp = temp.concat(val1[key]);
+    }
+    for (key in val2) {
+      temp2 = temp2.concat(val2[key]);
+    }
+    if (temp === temp2) {
+      return true;
+    } else {
+      return false;
+    }
+  } else if (val1 === val2) {
+    return true;
+  } else if (val1 !== val2) {
+    return false;
+  }
 }
 
 obj1 = {
-	name: "Chad",
-	gender: "male",
-	wilks: 370
+  name: "Chad",
+  gender: "male",
+  wilks: 370
 };
 
 obj2 = {
-	name: "Chad",
-	gender: "male",
-	power: 370
+  name: "Chad",
+  gender: "male",
+  power: 370
 };
 
 console.log(deepEqual(obj1, obj2));
-console.log(deepEqual(1,1));
-console.log(deepEqual("hi",1));
+console.log(deepEqual(1, 1));
+console.log(deepEqual("hi", 1));
+console.log(deepEqual(null, obj1));
+console.log(deepEqual(null, null));
