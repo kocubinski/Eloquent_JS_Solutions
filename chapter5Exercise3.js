@@ -55,7 +55,7 @@ function getCentury(arr) {
 }
   
 
-function getBirth(arr) {
+function getBirthCent(arr) {
   var centuryArr = [];
   for (var i = 0; i < arr.length; i++) {
     var temp = arr[i];
@@ -72,4 +72,19 @@ function getBirth(arr) {
   return centuryArr;
 }
 
-var a = getBirth(ancestryArr);
+function getBirthYear(arr) {
+  var birthArr = [];
+  for (var i = 0; i < arr.length; i++) {
+    var temp = arr[i];
+    for (key in temp) {
+      if (key === "born") {
+       birthArr.push(temp[key]);
+      }      
+    }
+  }
+  console.log(birthArr);
+  return birthArr;
+}
+
+var a = getBirthCent(ancestryArr);
+var b = getBirthYear(ancestryArr);
