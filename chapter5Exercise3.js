@@ -1,5 +1,4 @@
 // Compute and output the average age of the people in the ancestry data set per century. A person is assigned to a century by taking their year of death, dividing it by 100, and rounding it up, as in Math.ceil(person.died / 100). 
-
 var ancestryArr = [{
     "name": "Carolus Haverbeke",
     "sex": "m",
@@ -318,29 +317,18 @@ function getDeathCent(arr) {
   var centuryArr = [];
   for (var i = 0; i < arr.length; i++) {
     var temp = arr[i];
-    for (key in temp) {
-      if (key === "died") {
-        var temp2 = temp.died.toString();
-        centuryArr.push(temp2.substr(0, 2));
-      }
-    }
-  }
-
-  function stringToNumber(arr) {
-    for (var i = 0; i < arr.length; i++) {
-      arr[i] = parseInt(arr[i]);
-    }
-    return arr;
+    var temp2 = temp.died.toString();
+    centuryArr.push(temp2.substr(0, 2));
   }
 
   function getCentury(arr) {
     for (var i = 0; i < arr.length; i++) {
+      arr[i] = parseInt(arr[i]);
       arr[i] += 1;
     }
     return arr;
   }
 
-  stringToNumber(centuryArr);
   getCentury(centuryArr);
   console.log(centuryArr);
   return centuryArr;
@@ -348,15 +336,8 @@ function getDeathCent(arr) {
 
 function getAgeAtDeath(arr) {
   var ageAtDeathArr = [];
-  var birth;
-  var death;
-  var ageAtDeath;
   for (var i = 0; i < arr.length; i++) {
-    var temp = arr[i];
-    birth = temp.born;
-    death = temp.died;
-    ageAtDeath = death - birth;
-    ageAtDeathArr.push(ageAtDeath);
+    ageAtDeathArr.push(arr[i].died - arr[i].born);
   }
   console.log(ageAtDeathArr);
   return ageAtDeathArr;
