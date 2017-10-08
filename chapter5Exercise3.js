@@ -353,26 +353,26 @@ function convert(ancestryArr, centuryArr) {
   return newObj;
 }
 
-function objPropAvg(obj) {
+function convertedObjPropAvg(convertedObj) {
   function getSum(total, num) {
     return total + num;
   }
-  for (key in obj) {
-    var temp = obj[key].reduce(getSum);
-    obj[key] = temp / obj[key].length;
+  for (key in convertedObj) {
+    var temp = convertedObj[key].reduce(getSum);
+    convertedObj[key] = temp / convertedObj[key].length;
   }
-  console.log(obj);
-  return obj;
+  console.log(convertedObj);
+  return convertedObj;
 }
 
-function print(obj) {
-  for (key in obj) {
-    console.log(key + ": " + obj[key].toFixed(1));
+function print(convertedObj) {
+  for (key in convertedObj) {
+    console.log(key + ": " + convertedObj[key].toFixed(1));
   }
 }
 
 var a = getDeathCent(ejsAncestryArr);
 var b = getAgeAtDeath(ejsAncestryArr);
 var c = convert(a, b);
-var d = objPropAvg(c);
+var d = convertedObjPropAvg(c);
 var e = print(d);
