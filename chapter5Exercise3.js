@@ -321,8 +321,8 @@ function getDeathCent(ancestryArr) {
   // the array we will return, starts empty
   var centuryArr = [];
 
-  // Grab the year of death from our ancestry-array, turn it into a string, 
-  // and grab the first two members of the string, and put each into the array we will eventually return.
+  // Grab the year of death from the inputted ancestry-array, turn it into a string, 
+  // and grab the first two members of the string, and put each into our array we will eventually return.
   for (var i = 0; i < ancestryArr.length; i++) {
     centuryArr.push(ancestryArr[i].died.toString().substr(0, 2));
   }
@@ -359,13 +359,15 @@ function getAgeAtDeath(ancestryArr) {
 }
 
 // A function that will take our array of centuries-when-deaths occurred, 
-// and our array of ages-at-death, and return an object where the key-names are the death-centuries that exist, 
+// and our array of ages-at-death, then return an object where the key-names 
+// are the centuries-of-death that exist in our data-set, 
 // and the values will be an array of the ages of people who died during that respective century.
 function convert(centuryOfDeathArr, ageOfDeathArr) {
   // the object we will return, starts empty
   var newObj = {};
 
-  // Set the key-names of the new object equal to the centuries, and set them equal to an empty array.
+  // Set the key-names of the new object equal to the centuries-of-death that exist in our initial data-set, 
+  // and set them equal to an empty array.
   for (var i = 0; i < centuryOfDeathArr.length; i++) {
     newObj[centuryOfDeathArr[i]] = [];
   }
