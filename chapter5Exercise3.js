@@ -1,5 +1,5 @@
 // Compute and output the average age of the people in the ancestry data set per century. A person is assigned to a century by taking their year of death, dividing it by 100, and rounding it up, as in Math.ceil(person.died / 100). 
-var ancestryArr = [{
+var ejsAncestryArr = [{
     "name": "Carolus Haverbeke",
     "sex": "m",
     "born": 1832,
@@ -313,20 +313,18 @@ var ancestryArr = [{
   }
 ];
 
-function getDeathCent(arr) {
+function getDeathCent(ancestryArr) {
   var centuryArr = [];
-  for (var i = 0; i < arr.length; i++) {
-    var temp = arr[i];
-    var temp2 = temp.died.toString();
-    centuryArr.push(temp2.substr(0, 2));
+  for (var i = 0; i < ancestryArr.length; i++) {
+    centuryArr.push(arr[i].died.toString().substr(0, 2));
   }
 
-  function getCentury(arr) {
-    for (var i = 0; i < arr.length; i++) {
-      arr[i] = parseInt(arr[i]);
-      arr[i] += 1;
+  function getCentury(ancestryArr) {
+    for (var i = 0; i < ancestryArr.length; i++) {
+      ancestryArr[i] = parseInt(arr[i]);
+      ancestryArr[i] += 1;
     }
-    return arr;
+    return ancestryArr;
   }
 
   getCentury(centuryArr);
@@ -334,24 +332,22 @@ function getDeathCent(arr) {
   return centuryArr;
 }
 
-function getAgeAtDeath(arr) {
+function getAgeAtDeath(ancestryArr) {
   var ageAtDeathArr = [];
-  for (var i = 0; i < arr.length; i++) {
-    ageAtDeathArr.push(arr[i].died - arr[i].born);
+  for (var i = 0; i < ancestryArr.length; i++) {
+    ageAtDeathArr.push(ancestryArr[i].died - ancestryArr[i].born);
   }
   console.log(ageAtDeathArr);
   return ageAtDeathArr;
 }
 
-function convert(arr, arr2) {
+function convert(ancestryArr, arr2) {
   var newObj = {};
-  for (var i = 0; i < arr.length; i++) {
-    var item = arr[i];
-    newObj[item] = [];
+  for (var i = 0; i < ancestryArr.length; i++) {
+    newObj[ancestryArr[i]] = [];
   }
   for (var i = 0; i < arr.length; i++) {
-    var item = arr[i];
-    newObj[item].push(arr2[i]);
+    newObj[ancestryArr[i]].push(arr2[i]);
   }
   console.log(newObj);
   return newObj;
@@ -375,8 +371,8 @@ function print(obj) {
   }
 }
 
-var a = getDeathCent(ancestryArr);
-var b = getAgeAtDeath(ancestryArr);
+var a = getDeathCent(ejsAncestryArr);
+var b = getAgeAtDeath(ejsAncestryArr);
 var c = convert(a, b);
 var d = objPropAvg(c);
 var e = print(d);
