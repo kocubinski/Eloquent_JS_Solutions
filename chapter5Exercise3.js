@@ -316,12 +316,12 @@ var ejsAncestryArr = [{
 function getDeathCent(ancestryArr) {
   var centuryArr = [];
   for (var i = 0; i < ancestryArr.length; i++) {
-    centuryArr.push(arr[i].died.toString().substr(0, 2));
+    centuryArr.push(ancestryArr[i].died.toString().substr(0, 2));
   }
 
   function getCentury(ancestryArr) {
     for (var i = 0; i < ancestryArr.length; i++) {
-      ancestryArr[i] = parseInt(arr[i]);
+      ancestryArr[i] = parseInt(ancestryArr[i]);
       ancestryArr[i] += 1;
     }
     return ancestryArr;
@@ -341,13 +341,13 @@ function getAgeAtDeath(ancestryArr) {
   return ageAtDeathArr;
 }
 
-function convert(ancestryArr, arr2) {
+function convert(ancestryArr, centuryArr) {
   var newObj = {};
   for (var i = 0; i < ancestryArr.length; i++) {
     newObj[ancestryArr[i]] = [];
   }
-  for (var i = 0; i < arr.length; i++) {
-    newObj[ancestryArr[i]].push(arr2[i]);
+  for (var i = 0; i < ancestryArr.length; i++) {
+    newObj[ancestryArr[i]].push(centuryArr[i]);
   }
   console.log(newObj);
   return newObj;
