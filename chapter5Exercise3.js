@@ -426,10 +426,10 @@ var peopleByCentury = ejsAncestryArr.reduce(function(acc, p) {
 // take each `century -> [people ... ]` key-value and transform
 // into a tuple of the form [century average-age]
 var averages = Object.keys(peopleByCentury).map(function (century) {
-    var people = peopleByCentury[century];
-    var ageTotal = people.reduce(function(sum, p) {
-	return sum + (p.died - p.born);
-    }, 0);
+    var people = peopleByCentury[century],
+	ageTotal = people.reduce(function(sum, p) {
+	    return sum + (p.died - p.born);
+	}, 0);
 
     return [century, ageTotal / people.length];
 });
