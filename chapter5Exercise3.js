@@ -414,23 +414,24 @@ var e = print(d);
 
 // kocubinski's version
 
+// organize all people into a hash-map keyed on century
 var peopleByCentury = ejsAncestryArr.reduce(function(acc, p) {
     var century = parseInt(p.died.toString().substr(0, 2)) + 1,
-	people = acc[century] || [];
+	people = acc[century] || (acc[century] = []);
 
     people.push(p);
-    acc[century] = people;
     return acc;
 }, {});
 
+// take each `century -> [people ... ]` key-value and transform
+// into a tuple of the form [century average-age]
 var averages = Object.keys(peopleByCentury).map(function (century) {
-    var lifeSpans = peopleByCentury[century].map(function(p) {
-	return p.died - p.born;
-    });
-    return [ century,
-	     lifeSpans.reduce(function(sum, span) {
-		 return sum + span;
-	     }, 0) / lifeSpans.length ];
+    var people = peopleByCentury[century];
+    var ageTotal = people.reduce(function(sum, p) {
+	return sum + (p.died - p.born);
+    }, 0);
+
+    return [century, ageTotal / people.length];
 });
 
 console.log(averages);
