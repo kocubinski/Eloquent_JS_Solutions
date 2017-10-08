@@ -1,4 +1,4 @@
-// Compute and output the average age of the people in the ancestry data set per century. A person is assigned to a century by taking their year of death, dividing it by 100, and rounding it up, as in Math.ceil(person.died / 100). 
+// Compute and output the average age of the people in the ancestry data set per century. 
 
 // Eloquent JavaScript's given ancestry array.
 var ejsAncestryArr = [{
@@ -315,17 +315,20 @@ var ejsAncestryArr = [{
   }
 ];
 
-// A function that takes in an EJS-like ancestry-array and returns an array where each member is the century-of-death for each member of the inputted array.
+// A function that takes in an EJS-like ancestry-array
+// and returns an array where each member is the century-of-death for each member of the inputted array.
 function getDeathCent(ancestryArr) {
   // the array we will return, starts empty
   var centuryArr = [];
 
-  // Grab the year of death from our ancestry array, turn it into a string, and grab the first two members of the string, and put each into the array we will eventually return.
+  // Grab the year of death from our ancestry array, turn it into a string, 
+  // and grab the first two members of the string, and put each into the array we will eventually return.
   for (var i = 0; i < ancestryArr.length; i++) {
     centuryArr.push(ancestryArr[i].died.toString().substr(0, 2));
   }
 
-  // convert each member of our array of strings to their numeric equivalents, then add 1. Now each member is representative of the century-of-death for each member of the inputted array.
+  // convert each member of our array of strings to their numeric equivalents, then add 1. 
+  // Now each member is representative of the century-of-death for each member of the inputted array.
   function getCentury() {
     for (var i = 0; i < centuryArr.length; i++) {
       centuryArr[i] = parseInt(centuryArr[i]);
@@ -339,12 +342,15 @@ function getDeathCent(ancestryArr) {
   return centuryArr;
 }
 
-// function that takes in an EJS-like ancestry array and returns an array where each member is the year-of-death for each member of the inputted array
+// function that takes in an EJS-like ancestry array 
+// and returns an array where each member is the year-of-death for each member of the inputted array
 function getAgeAtDeath(ancestryArr) {
   // the array we will return, starts empty
   var ageAtDeathArr = [];
 
-  // For each member of our EJS-like ancestry array, subtract the year-of-death from the year-of-birth to calculate the age at time-of-death. Then put each time-of-death age into the array we will eventually return.
+  // For each member of our EJS-like ancestry array, 
+  // subtract the year-of-death from the year-of-birth to calculate the age at time-of-death. 
+  // Then put each time-of-death age into the array we will eventually return.
   for (var i = 0; i < ancestryArr.length; i++) {
     ageAtDeathArr.push(ancestryArr[i].died - ancestryArr[i].born);
   }
@@ -352,7 +358,9 @@ function getAgeAtDeath(ancestryArr) {
   return ageAtDeathArr;
 }
 
-// A function that will take our array of centuries-when-deaths occurred, and our array of ages-at-death, and return an object where the key-names are the death-centuries that exist, and the values will be an array of the ages of people who died during that respective century.
+// A function that will take our array of centuries-when-deaths occurred, 
+// and our array of ages-at-death, and return an object where the key-names are the death-centuries that exist, 
+// and the values will be an array of the ages of people who died during that respective century.
 function convert(centuryOfDeathArr, ageOfDeathArr) {
   // the object we will return, starts empty
   var newObj = {};
@@ -375,7 +383,9 @@ function convertedObjPropAvg(convertedObj) {
   function getSum(total, num) {
     return total + num;
   }
-  // for every property in our object, which are all arrays, add up each array's members and then divide by their array-length to find their average. Now, each key-name will be set to the average age-of-death for that century.
+  // for every property in our object, which are all arrays, add up each array's members 
+  // and then divide by their array-length to find their average. 
+  // Now, each key-name will be set to the average age-of-death for that century.
   for (key in convertedObj) {
     var temp = convertedObj[key].reduce(getSum);
     convertedObj[key] = temp / convertedObj[key].length;
@@ -384,7 +394,10 @@ function convertedObjPropAvg(convertedObj) {
   return convertedObj;
 }
 
-// take our object that is now composed of key-names that are centuries, and key-values which are average ages of death for that respective century, round the averages to one decimal (to correspond to the answers given by EJS), and print them with their key-names.
+// Take our object that is now composed of key-names that are centuries, 
+// and key-values which are average ages of death for that respective century, 
+// round the averages to one decimal (to correspond to the answers given by EJS), 
+// and print them with their key-names.
 function print(convertedObj) {
   for (key in convertedObj) {
     console.log(key + ": " + convertedObj[key].toFixed(1));
